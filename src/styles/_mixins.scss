@@ -1,0 +1,60 @@
+//ТИПОГРАФИКА
+@mixin text-title() {
+  font-size: var(--fz-title);
+  line-height: 1;
+  font-weight: bold;
+  letter-spacing: -0.3px;
+}
+@mixin text-tagline() {
+  font-size: var(--fz-tagline);
+  line-height: 1;
+  font-weight: bold;
+}
+
+@mixin text-headline() {
+  font-size: var(--fz-headline);
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+@mixin text-subhead() {
+  font-size: var(--fz-subhead);
+  line-height: 1.18;
+  font-weight: bold;
+}
+
+@mixin text-lead() {
+  font-size: var(--fz-lead);
+  line-height: 1.3rem;
+  font-weight: bold;
+}
+
+@mixin text-body() {
+  font-size: var(--fz-body);
+  line-height: 1.3rem;
+}
+
+@mixin text-caption() {
+  font-size: var(--fz-caption);
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+}
+
+@mixin text-small() {
+  font-size: var(--fz-small);
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+}
+
+//АНИМАЦИЯ
+@mixin transition(
+  $property: all,
+  $duration: 0.3s,
+  $timing: cubic-bezier(0.42, 0, 0.58, 1),
+  $delay: 0s
+) {
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+  transition-delay: $delay;
+}

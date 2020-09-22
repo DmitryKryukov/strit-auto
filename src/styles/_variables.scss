@@ -1,0 +1,51 @@
+:root {
+  //ЦВЕТА
+  --text-main-accented: #171717;
+  --text-main: #333;
+  --text-muted: #808080;
+  --text-on-accent: #FFF;
+
+  --background-main: #F0F0F0;
+  --background-card: #FFFFFF;
+  --background-card-accented: #E0E0E0;
+  --background-backdrop: #FFFFFF80;
+
+  --accent-primary: #4755F5;
+  --accent-secondary: #0F2E8A;
+
+  //ЛЕЙАУТ
+  --spacer-l: 2rem;
+  --spacer-m: 1.5rem;
+  --spacer-s: 1rem;
+  @include media-breakpoint-down(tabletM) {
+    --spacer-l: 1rem;
+    --spacer-m: 1rem;
+    --spacer-s: 1rem;
+  }
+  @include media-breakpoint-down(mobileL) {
+    --spacer-l: 1rem;
+    --spacer-m: 1rem;
+    --spacer-s: .5625rem;
+  }
+
+
+  //ЭФФЕКТЫ
+  --backdrop: blur(20px) saturate(200%);
+  --border: 1px solid var(--background-main);
+  --border-radius: 0.625rem;
+
+  //ТИПОГРАФИКА
+  --font-family: "Geometria", sans-serif;
+  --fz-title: 3.75rem;
+  --fz-tagline: 2.5rem;
+  --fz-headline: 1.875rem;
+  --fz-subhead: 1.375rem;
+  --fz-lead: 1rem;
+  --fz-body: 1rem;
+  --fz-caption: .875rem;
+  --fz-small: .75rem;
+
+  //АНИМАЦИИ
+  --ease: cubic-bezier(0.42, 0, 0.58, 1);
+
+}
