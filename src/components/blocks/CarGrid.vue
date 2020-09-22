@@ -19,7 +19,10 @@ export default {
     carCard,
   },
   props: {
-    sectionTitle: 'Предложения месяца',
+    sectionTitle: {
+      type: String,
+      default: 'Предложения месяца',
+    },
   },
   data() {
     return {

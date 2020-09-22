@@ -29,7 +29,7 @@ export default {
   content-visibility: auto;
   contain-intrinsic-size: 414px;
   padding: calc(var(--spacer-m) * 2) 0 calc(var(--spacer-m) * 2 + 20px);
-  background-color: var(--background-card);
+  background-color: var(--background-card-accented);
   &-text {
     width: 50%;
     @include media-breakpoint-down(mobileL) {

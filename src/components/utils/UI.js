@@ -14,7 +14,9 @@ let fixScroll = {
       this.fixScrollCurrentScrollPos = window.scrollY;
       this.fixScrollBodyEl.style.cssText += `
         position: fixed;
-        top: ${this.fixScrollCurrentScrollPos * -1}px;        
+        top: ${this.fixScrollCurrentScrollPos * -1}px;
+        height: 100%;
+        width: 100%;        
       `;
     },
     unFixScroll() {

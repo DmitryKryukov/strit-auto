@@ -2,44 +2,53 @@
 <template lang="pug">
 fragment
   .navigation-wrapper
-    .keen-slider(ref="slider")
+    .keen-slider(ref='slider')
       slot
 
     .arrow(
-      v-if="slider",
-      @click="slider.prev()",
-      :class="{ arrow: true, 'arrow--left': true, 'arrow--disabled': current === 0 }"
+      v-if='slider',
+      @click='slider.prev()',
+      :class='{ arrow: true, "arrow--left": true, "arrow--disabled": current === 0 }'
     )
-      svg.arrow__icon(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 24 24")
+      svg.arrow__icon(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 24 24')
         path(
-          d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
+          d='M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z'
         )
     .arrow(
-      :class="{ arrow: true, 'arrow--right': true, 'arrow--disabled': current === slider.details().size - 1 }",
-      v-if="slider",
-      @click="slider.next()"
+      :class='{ arrow: true, "arrow--right": true, "arrow--disabled": current === slider.details().size - 1 }',
+      v-if='slider',
+      @click='slider.next()'
     )
-      svg.arrow__icon(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 24 24")
-        path(d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z")
+      svg.arrow__icon(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 24 24')
+        path(d='M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z')
 
-  .dots(v-if="slider")
+  .dots(v-if='slider')
     .container
       button(
-        v-for="(slide, idx) in dotHelper",
-        @click="slider.moveToSlideRelative(idx)",
-        :class="{ dot: true, active: current === idx }",
-        :key="idx"
+        v-for='(slide, idx) in dotHelper',
+        @click='slider.moveToSlideRelative(idx)',
+        :class='{ dot: true, active: current === idx }',
+        :key='idx'
       )
-        svg(viewBox="0 0 10 10", fill="none", xmlns="http://www.w3.org/2000/svg")
-          path(d="M5 0L9.375 2.5V7.5L5 10L0.625 7.5V2.5L5 0Z", fill="currentColor")
+        svg(
+          viewBox='0 0 10 10',
+          fill='none',
+          xmlns='http://www.w3.org/2000/svg'
+        )
+          path(
+            d='M5 0L9.375 2.5V7.5L5 10L0.625 7.5V2.5L5 0Z',
+            fill='currentColor'
+          )
 </template>
 
 <script>
-import "keen-slider/keen-slider.min.css";
-import KeenSlider from "keen-slider";
+import 'keen-slider/keen-slider.min.css'
+import KeenSlider from 'keen-slider'
+import onResize from '@/components/utils/IOnResize'
 
 export default {
-  name: "Slider",
+  name: 'Slider',
+  mixins: [onResize],
   data() {
     return {
       current: 0,
@@ -48,18 +57,17 @@ export default {
       cardFlipAnimation: false,
       maxAngle: 10,
       windowWidth: null,
-    };
+    }
   },
   computed: {
     dotHelper() {
-      return this.slider ? [...Array(this.slider.details().size).keys()] : [];
+      return this.slider ? [...Array(this.slider.details().size).keys()] : []
     },
     slideOffsetValue() {
-      return this.slideOffset;
+      return this.slideOffset
     },
   },
   mounted() {
-    this.onResize();
     this.slider = new KeenSlider(this.$refs.slider, {
       initial: this.current,
 
@@ -70,48 +78,42 @@ export default {
           const progress = (
             s.details().position / this.windowWidth +
             1
-          ).toFixed(2);
+          ).toFixed(2)
           this.$refs.slider.style.setProperty(
-            "--rotate",
-            this.maxAngle * (1 - progress) + "deg"
-          );
+            '--rotate',
+            this.maxAngle * (1 - progress) + 'deg'
+          )
         }
       },
-    });
-
-    window.addEventListener("optimizedResize", () => {
-      this.onResize();
-    });
+    })
   },
-
   beforeDestroy() {
-    window.removeEventListener("optimizedResize");
-    if (this.slider) this.slider.destroy();
+    if (this.slider) this.slider.destroy()
   },
   methods: {
-    onResize: function () {
-      this.windowWidth = window.innerWidth;
-      this.sliderInit();
+    onResize() {
+      this.windowWidth = window.innerWidth
+      this.sliderInit()
     },
     sliderInit: function () {
-      const slides = Array.from(this.$refs.slider.children);
+      const slides = Array.from(this.$refs.slider.children)
       if (this.windowWidth < 450) {
-        this.cardFlipAnimation = true;
+        this.cardFlipAnimation = true
         slides.forEach((s, i) => {
           s.firstChild.style.transform =
-            "rotate(calc(var(--rotate) + " + this.maxAngle * i + "deg)";
-        });
+            'rotate(calc(var(--rotate) + ' + this.maxAngle * i + 'deg)'
+        })
       } else {
-        this.cardFlipAnimation = false;
-        slides.forEach((s) => (s.firstChild.style.transform = "rotate(0deg)"));
+        this.cardFlipAnimation = false
+        slides.forEach((s) => (s.firstChild.style.transform = 'rotate(0deg)'))
       }
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
-@import "../../styles/toptier";
+@import '../../styles/toptier';
 .keen-slider {
   background: var(--background-card-accented);
   cursor: grab;
@@ -184,7 +186,7 @@ export default {
   background-color: var(--accent-secondary);
   border-radius: var(--border-radius);
   cursor: pointer;
-  opacity: .3;
+  opacity: 0.3;
   transform: translateY(-50%);
   transition: filter 0.1s var(--ease), width 0.1s var(--ease),
     opacity 0.2s var(--ease), height 0.1s var(--ease);
@@ -200,7 +202,7 @@ export default {
     fill: #fff;
   }
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     display: block;
     width: 7rem;

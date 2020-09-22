@@ -69,32 +69,10 @@ export default {
       }),
     },
   },
-  data() {
-    return {
-      brands: [
-        { name: 'Lada', imgSrc: require('@/assets/brands/lada.png') },
-        { name: 'Hyundai', imgSrc: require('@/assets/brands/hyundai.png') },
-        { name: 'Kia', imgSrc: require('@/assets/brands/kia.png') },
-        { name: 'Renault', imgSrc: require('@/assets/brands/renault.png') },
-        { name: 'Nissan', imgSrc: require('@/assets/brands/nissan.png') },
-        { name: 'Lifan', imgSrc: require('@/assets/brands/lifan.png') },
-        { name: 'Škoda', imgSrc: require('@/assets/brands/skoda.png') },
-        {
-          name: 'Volkswagen',
-          imgSrc: require('@/assets/brands/volkswagen.png'),
-        },
-        { name: 'Datsun', imgSrc: require('@/assets/brands/datsun.png') },
-        { name: 'Geely', imgSrc: require('@/assets/brands/geely.png') },
-        { name: 'Zotye', imgSrc: require('@/assets/brands/zotye.png') },
-        { name: 'FAW', imgSrc: require('@/assets/brands/faw.png') },
-        { name: 'Уаз', imgSrc: require('@/assets/brands/uaz.png') },
-        { name: 'Chevrolet', imgSrc: require('@/assets/brands/chevrolet.png') },
-        { name: 'Chery', imgSrc: require('@/assets/brands/chery.png') },
-        { name: 'Changan', imgSrc: require('@/assets/brands/changan.png') },
-        { name: 'Haval', imgSrc: require('@/assets/brands/haval.png') },
-        { name: 'Suzuki', imgSrc: require('@/assets/brands/suzuki.png') },
-      ],
-    }
+  computed: {
+    brands() {
+      return this.$store.state.brands.all
+    },
   },
   methods: {
     onResize() {
@@ -120,6 +98,7 @@ export default {
   @include media-breakpoint-down(mobileM) {
     padding: 1rem 0 2rem;
   }
+
   &-nav {
     margin-bottom: 2.75rem;
     @include media-breakpoint-down(tabletS) {
@@ -132,6 +111,16 @@ export default {
         }
         @include media-breakpoint-down(mobileM) {
           margin-bottom: 0.5rem;
+          /deep/ .logo {
+            svg {
+              height: 1.8rem;
+              margin-top: 0.125rem;
+              margin-left: -35px;
+            }
+            &__symbol {
+              display: none;
+            }
+          }
         }
       }
     }

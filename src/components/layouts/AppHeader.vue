@@ -10,8 +10,9 @@ fragment
   )
   section.floor.header-panel(ref='menuPanel')
     .container.row.row--h-justified.row--v-center
-      anchor.header-panel-main(href='/')
-        logo
+      div(@click='closeMenu')
+        anchor.header-panel-main(href='/')
+          logo
 
       .header-panel-aside
         anchor.header-panel-aside__contact.header-panel-aside__contact--adress(
@@ -34,14 +35,14 @@ fragment
     ref='menuNav'
   )
     .container.row.row--h-justified
-      nav.header-nav-main.row
+      nav.header-nav-main.row(@click='closeMenu')
         anchor.header-nav__item(href='/catalog') Автомобили
         anchor.header-nav__item(href='/credit') Кредит
         anchor.header-nav__item(href='/trade-in') Трейд-ин
         anchor.header-nav__item(href='/discount') Акции
         anchor.header-nav__item(href='/feedback') Отзывы
         anchor.header-nav__item(href='/contact') Контакты
-      .header-nav-aside.row
+      .header-nav-aside.row(@click='closeMenu')
         span.header-nav-aside__text Есть замечания к&nbsp;сотрудникам:
         anchor.header-nav-aside__anchor(href='/contact', underlined) Пожаловаться
         img.header-nav-aside__image(
@@ -54,7 +55,8 @@ import panel from '@/components/blocks/Panel'
 import logo from '@/components/graphs/Logo'
 import anchor from '@/components/controls/Anchor'
 import actionButton from '@/components/controls/ActionButton.vue'
-import { throttle } from '@/components/utils'
+import onResize from '@/components/utils/IOnResize'
+import fixScroll from '@/components/utils/UI'
 
 export default {
   components: {
@@ -63,6 +65,7 @@ export default {
     anchor,
     actionButton,
   },
+  mixins: [onResize, fixScroll],
   props: {
     adress: {
       type: Object,
@@ -85,14 +88,9 @@ export default {
       currentScrollPos: 0,
     }
   },
-  mounted: function () {
-    this.initMenu()
-    window.addEventListener('optimizedResize', () => {
-      this.initMenu
-    })
-  },
+  mounted: function () {},
   methods: {
-    initMenu: function (event) {
+    onResize(event) {
       let menuTop =
         this.$refs.menuPanel.offsetTop +
         this.$refs.menuPanel.offsetHeight -
@@ -100,25 +98,25 @@ export default {
         'px'
       this.$refs.menuNav.style.setProperty('--menu-top', menuTop)
     },
-    toggleMenu: function (event) {
-      this.initMenu()
+    toggleMenu() {
+      this.onResize()
       this.isMenuOpen = !this.isMenuOpen
 
       if (this.isMenuOpen) {
-        this.currentScrollPos = window.scrollY
-        console.log(this.currentScrollPos)
-        let body = document.querySelector('body')
-        body.style.position = 'fixed'
-        body.style.top = this.currentScrollPos * -1 + 'px'
-        body.style.left = '0'
-        body.style.width = '100%'
-        body.style.height = '100%'
+        this.fixScroll()
       } else {
-        document.querySelector('body').style.position = 'static'
-        window.scroll(0, this.currentScrollPos)
+        this.unFixScroll()
       }
     },
-    panelColapsing: function (event) {
+    closeMenu() {
+      this.isMenuOpen = false
+      if (this.isMenuOpen) {
+        this.fixScroll()
+      } else {
+        this.unFixScroll()
+      }
+    },
+    panelColapsing() {
       let menuTop = this.$refs.menuPanel.offsetHeight + 'px'
       this.$refs.menuNav.style.setProperty('--menu-top', menuTop)
     },
@@ -229,7 +227,7 @@ export default {
     .container {
       //justify-content: space-between;
     }
-    
+
     @include media-breakpoint-down(tabletM) {
       padding: 0.75rem 0 0.875rem;
     }
@@ -268,11 +266,12 @@ export default {
         --menu-height: calc(100vh - var(--menu-top));
         height: var(--menu-height);
         margin-bottom: calc(var(--menu-height) * -1);
-        
+
         .header-nav-aside {
           background-color: var(--background-main);
-          transform: none;          
-          transition: background-color 1s .5s cubic-bezier(0.32, 0.08, 0.24, 1), transform  1s .2s cubic-bezier(0.32, 0.08, 0.24, 1);
+          transform: none;
+          transition: background-color 1s 0.5s cubic-bezier(0.32, 0.08, 0.24, 1),
+            transform 1s 0.2s cubic-bezier(0.32, 0.08, 0.24, 1);
         }
       }
       .row--h-justified {
@@ -296,13 +295,14 @@ export default {
 
       &-aside {
         position: relative;
-          align-items: flex-start;
+        align-items: flex-start;
         padding: var(--spacer-m) var(--spacer-m);
         margin: var(--spacer-l) 0 calc(var(--spacer-l) * 1.5);
         background-color: var(--background-card-accented);
         border-radius: var(--border-radius);
-        transform: scale(.95);
-        transition: background-color 1s cubic-bezier(0.32, 0.08, 0.24, 1),transform  1s cubic-bezier(0.32, 0.08, 0.24, 1);
+        transform: scale(0.95);
+        transition: background-color 1s cubic-bezier(0.32, 0.08, 0.24, 1),
+          transform 1s cubic-bezier(0.32, 0.08, 0.24, 1);
         &__text {
           display: block;
           max-width: 75%;

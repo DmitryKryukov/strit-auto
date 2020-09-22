@@ -1,33 +1,28 @@
 <template lang="pug">
 article.car-card
-  .car-card__badge(v-if='car.badge') {{ "−" + modifyToRuble(car.priceOld - car.priceCurrent) }}
+  .car-card__badge(v-if='car.badge') {{ "−" + toRuble(car.priceOld - car.priceCurrent) }}
   .car-card__photo
     img(:src='car.imgSrc')
   .car-card__brand {{ car.brand }}
   .car-card__name {{ car.name }}
-  .car-card__price.car-card__price--old {{ modifyToRuble(car.priceOld) }}
-  .car-card__price.car-card__price--current {{ modifyToRuble(car.priceCurrent) }}
+  .car-card__price.car-card__price--old {{ toRuble(car.priceOld) }}
+  .car-card__price.car-card__price--current {{ toRuble(car.priceCurrent) }}
   anchor.car-card__btn(button, primary) Рассчитать кредит
 </template>
 
 <script>
 import anchor from '@/components/controls/Anchor.vue'
-import { toRuble } from '@/components/utils'
+import stringsHelper from '@/components/utils/Strings'
 
 export default {
   name: 'CarCard',
   components: {
     anchor,
   },
+  mixins: [stringsHelper],
   props: {
     car: Object,
   },
-  methods: {
-    modifyToRuble: function (value) {
-      return toRuble(value)
-    },
-  },
-  mounted: function () {},
 }
 </script>
 
