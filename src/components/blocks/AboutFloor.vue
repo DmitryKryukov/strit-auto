@@ -28,19 +28,12 @@ export default {
 .about {
   content-visibility: auto;
   contain-intrinsic-size: 414px;
-  //margin-bottom: calc(var(--spacer-m) * 2 + 20px);
   padding: calc(var(--spacer-m) * 2) 0 calc(var(--spacer-m) * 2 + 20px);
   background-color: var(--background-card);
   &-text {
     width: 50%;
     @include media-breakpoint-down(mobileL) {
       width: 100%;
-    }
-    &__name--main {
-      //color: var(--accent-secondary);
-    }
-    &__name--aside {
-      //color: var(--accent-primary);
     }
     &__lead {
       @include text-subhead();
