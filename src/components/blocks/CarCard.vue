@@ -45,8 +45,8 @@ export default {
     z-index: 1;
     padding: 2px 0.5rem 1px;
     border-radius: calc(var(--border-radius) - 4px);
-    background-color: var(--accent-primary);
-    color: var(--text-on-accent);
+    color: var(--accent-primary);
+    background-color: var(--accent-primary-transparent);
     @include text-small();
     transition: background-color 0.15s var(--ease);
     @include media-breakpoint-down(mobileL) {
@@ -130,7 +130,8 @@ export default {
     transform: scale(1.051);
     .car-card {
       &__badge {
-        background-color: var(--accent-secondary);
+        color: var(--accent-secondary);
+        background-color: var(--accent-secondary-transparent);
         transition: background-color 0.3s var(--ease);
       }
     }

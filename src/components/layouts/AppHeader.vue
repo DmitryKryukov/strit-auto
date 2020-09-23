@@ -1,62 +1,62 @@
 <template lang="pug">
 fragment
   panel.header-info(
-    text='Антикризисное предложение при\u00A0бронировании до\u00A031\u00A0сентября',
-    anchorText='Выбрать\u00A0авто',
-    anchorHref='#',
-    icon='heart',
+    text="Антикризисное предложение при\u00A0бронировании до\u00A031\u00A0сентября",
+    anchorText="Выбрать\u00A0авто",
+    anchorHref="#",
+    icon="heart",
     closeable,
-    @panelColapsing='panelColapsing'
+    @panelColapsing="panelColapsing"
   )
-  section.floor.header-panel(ref='menuPanel')
+  section.floor.header-panel(ref="menuPanel")
     .container.row.row--h-justified.row--v-center
-      div(@click='closeMenu')
-        anchor.header-panel-main(href='/')
+      div(@click="closeMenu")
+        anchor.header-panel-main(href="/")
           logo
 
       .header-panel-aside
         anchor.header-panel-aside__contact.header-panel-aside__contact--adress(
-          :href='adress.href',
-          v-if='adress.text'
+          :href="adress.href",
+          v-if="adress.text"
         ) {{ adress.text }}
         anchor.header-panel-aside__contact.header-panel-aside__contact--phone(
-          :href='phone.href',
-          v-if='phone.text'
+          :href="phone.href",
+          v-if="phone.text"
         ) {{ phone.text }}
         action-button.header-panel-aside__menu(
-          ref='menu',
-          icon='menu',
-          @click='toggleMenu',
-          :class='{ "header-panel-aside__menu--active": isMenuOpen }'
+          ref="menu",
+          icon="menu",
+          @click="toggleMenu",
+          :class="{ 'header-panel-aside__menu--active': isMenuOpen }"
         )
 
   section.floor.header-nav(
-    :class='{ "header-nav--active": isMenuOpen }',
-    ref='menuNav'
+    :class="{ 'header-nav--active': isMenuOpen }",
+    ref="menuNav"
   )
     .container.row.row--h-justified
-      nav.header-nav-main.row(@click='closeMenu')
-        anchor.header-nav__item(href='/catalog') Автомобили
-        anchor.header-nav__item(href='/credit') Кредит
-        anchor.header-nav__item(href='/trade-in') Трейд-ин
-        anchor.header-nav__item(href='/discount') Акции
-        anchor.header-nav__item(href='/feedback') Отзывы
-        anchor.header-nav__item(href='/contact') Контакты
-      .header-nav-aside.row(@click='closeMenu')
+      nav.header-nav-main.row(@click="closeMenu")
+        anchor.header-nav__item(href="/cars") Автомобили
+        anchor.header-nav__item(href="/credit") Кредит
+        anchor.header-nav__item(href="/trade-in") Трейд-ин
+        anchor.header-nav__item(href="/discount") Акции
+        anchor.header-nav__item(href="/feedback") Отзывы
+        anchor.header-nav__item(href="/contact") Контакты
+      .header-nav-aside.row(@click="closeMenu")
         span.header-nav-aside__text Есть замечания к&nbsp;сотрудникам:
-        anchor.header-nav-aside__anchor(href='/contact', underlined) Пожаловаться
+        anchor.header-nav-aside__anchor(href="/contact", underlined) Пожаловаться
         img.header-nav-aside__image(
-          src='../../assets/header/ceo-complaint.png'
+          src="../../assets/header/ceo-complaint.png"
         )
 </template>
 
 <script>
-import panel from '@/components/blocks/Panel'
-import logo from '@/components/graphs/Logo'
-import anchor from '@/components/controls/Anchor'
-import actionButton from '@/components/controls/ActionButton.vue'
-import onResize from '@/components/utils/IOnResize'
-import fixScroll from '@/components/utils/UI'
+import panel from "@/components/blocks/Panel";
+import logo from "@/components/graphs/Logo";
+import anchor from "@/components/controls/Anchor";
+import actionButton from "@/components/controls/ActionButton.vue";
+import onResize from "@/components/utils/IOnResize";
+import fixScroll from "@/components/utils/UI";
 
 export default {
   components: {
@@ -70,15 +70,15 @@ export default {
     adress: {
       type: Object,
       default: () => ({
-        text: 'Ульяновск, Дмитроградовское шоссе, 3',
-        href: '/contacts',
+        text: "Ульяновск, Дмитроградовское шоссе, 3",
+        href: "/contacts",
       }),
     },
     phone: {
       type: Object,
       default: () => ({
-        text: '+7 8422 79 06 52',
-        href: 'tel: +7 8422 79 06 52',
+        text: "+7 8422 79 06 52",
+        href: "tel: +7 8422 79 06 52",
       }),
     },
   },
@@ -86,7 +86,7 @@ export default {
     return {
       isMenuOpen: false,
       currentScrollPos: 0,
-    }
+    };
   },
   mounted: function () {},
   methods: {
@@ -95,37 +95,37 @@ export default {
         this.$refs.menuPanel.offsetTop +
         this.$refs.menuPanel.offsetHeight -
         window.scrollY +
-        'px'
-      this.$refs.menuNav.style.setProperty('--menu-top', menuTop)
+        "px";
+      this.$refs.menuNav.style.setProperty("--menu-top", menuTop);
     },
     toggleMenu() {
-      this.onResize()
-      this.isMenuOpen = !this.isMenuOpen
+      this.onResize();
+      this.isMenuOpen = !this.isMenuOpen;
 
       if (this.isMenuOpen) {
-        this.fixScroll()
+        this.fixScroll();
       } else {
-        this.unFixScroll()
+        this.unFixScroll();
       }
     },
     closeMenu() {
-      this.isMenuOpen = false
+      this.isMenuOpen = false;
       if (this.isMenuOpen) {
-        this.fixScroll()
+        this.fixScroll();
       } else {
-        this.unFixScroll()
+        this.unFixScroll();
       }
     },
     panelColapsing() {
-      let menuTop = this.$refs.menuPanel.offsetHeight + 'px'
-      this.$refs.menuNav.style.setProperty('--menu-top', menuTop)
+      let menuTop = this.$refs.menuPanel.offsetHeight + "px";
+      this.$refs.menuNav.style.setProperty("--menu-top", menuTop);
     },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">
-@import '../../styles/toptier';
+@import "../../styles/toptier";
 .header {
   &-panel {
     background-color: var(--background-card);
@@ -164,6 +164,9 @@ export default {
       margin-top: -2px; //Визуальная компенсация
       @include media-breakpoint-down(tabletM) {
         @include text-lead();
+      }
+      @include media-breakpoint-down(tabletS) {
+        align-items: center\;
       }
       &__contact {
         &--adress {
@@ -262,6 +265,7 @@ export default {
       top: 57px;
       transition: height 0.5s cubic-bezier(0.32, 0.08, 0.24, 1),
         margin-bottom 0.5s cubic-bezier(0.32, 0.08, 0.24, 1);
+    
       &--active {
         --menu-height: calc(100vh - var(--menu-top));
         height: var(--menu-height);

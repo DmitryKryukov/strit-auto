@@ -12,6 +12,8 @@
 
   --accent-primary: #4755F5;
   --accent-secondary: #0F2E8A;
+  --accent-primary-transparent: #4755F526;
+  --accent-secondary-transparent: #0F2E8A26;
 
   //ЛЕЙАУТ
   --spacer-l: 2rem;
@@ -47,5 +49,6 @@
 
   //АНИМАЦИИ
   --ease: cubic-bezier(0.42, 0, 0.58, 1);
+  --ease-back: cubic-bezier(0.5, 2.5, 0.64, 1);
 
 }

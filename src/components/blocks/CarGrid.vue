@@ -96,7 +96,7 @@ export default {
 
 <style scoped lang="scss">
 .car {
-  margin-bottom: calc(var(--spacer-m) * 2 + 20px);
+  margin-bottom: calc(var(--spacer-m) * 2 + 30px);
   content-visibility: auto;
 }
 </style>

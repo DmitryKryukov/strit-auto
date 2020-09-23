@@ -5,7 +5,7 @@ footer.floor.footer
       anchor.footer-nav-main(href='/')
         logo
       nav.footer-nav-aside.row
-        anchor.footer-nav-aside__item(href='/catalog') Автомобили
+        anchor.footer-nav-aside__item(href='/cars') Автомобили
         anchor.footer-nav-aside__item(href='/credit') Кредит
         anchor.footer-nav-aside__item(href='/trade-in') Трейд-ин
         anchor.footer-nav-aside__item(href='/discount') Акции
