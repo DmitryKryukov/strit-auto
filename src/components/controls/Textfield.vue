@@ -1,65 +1,69 @@
 <template lang="pug">
 .text-field-cell
   input.text-field__el(
-    type="text",
-    :id="id",
-    :placeholder="placeholder",
-    :maxlength="maxLength",
-    @input="valueChanged()",
-    v-model="value"
+    type='text',
+    :id='id',
+    :placeholder='placeholder',
+    :maxlength='maxLength',
+    @input='valueChanged()',
+    @change='valuePush()',
+    v-model='value'
   )
-  label.text-field__label(:for="id") {{ label }}
+  label.text-field__label(:for='id') {{ label }}
 </template>
 
 <script>
-import stringsHelper from "@/components/utils/Strings";
+import stringsHelper from '@/components/utils/Strings'
 
 export default {
-  name: "Textfield",
+  name: 'Textfield',
   props: {
     label: {
       type: String,
-      default: "Лейбл",
+      default: 'Лейбл',
     },
     placeholder: {
       type: String,
-      default: " ",
+      default: ' ',
     },
     maxLength: {
       type: String,
-      default: "48",
+      default: '48',
     },
     validateAs: {
       type: String,
-      default: "text",
+      default: 'text',
     },
   },
   mixins: [stringsHelper],
   data() {
     return {
-      id: "0",
-      value: "",
-    };
+      id: '0',
+      value: '',
+    }
   },
   mounted() {
-    this.generateId();
+    this.generateId()
   },
   methods: {
     generateId() {
-      this.id = Math.random().toString(36).substring(7);
+      this.id = Math.random().toString(36).substring(7)
     },
     valueChanged() {
-      if (this.validateAs == "price") {
-        this.value = this.toRuble(this.value.replace(/\s/g, ""), "");
-        this.$emit("input", this);
+      if (this.validateAs == 'price') {
+        this.value = this.toRuble(this.value.replace(/\s/g, ''), '')
+        this.$emit('input', this)
       }
     },
+    valuePush() {
+      this.$emit('change', this.value)
+    },
   },
-};
+}
 </script>
 
 <style scoped lang="scss">
-@import "../../styles/toptier";
+@import '../../styles/toptier';
 @mixin activeLabel() {
   transform: translate(2px, -10%) scale(0.8);
 }
