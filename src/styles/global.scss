@@ -30,4 +30,7 @@ a:visited {
 h2 {
   @include text-tagline();
   margin-bottom: var(--spacer-l);
+  @include media-breakpoint-down(mobileL) {
+    @include text-headline();
+  }
 }

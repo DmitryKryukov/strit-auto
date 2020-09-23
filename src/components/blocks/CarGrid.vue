@@ -12,12 +12,17 @@
 
 <script>
 import carCard from '@/components/blocks/CarCard'
-import utils from '@/components/utils'
 
 export default {
   name: 'CarGrid',
   components: {
     carCard,
+  },
+  props: {
+    sectionTitle: {
+      type: String,
+      default: 'Предложения месяца',
+    },
   },
   data() {
     return {
@@ -84,28 +89,7 @@ export default {
             'http://kit-avto.demo.lks.su/media/3603/conversions/907572c69c336645fcc25736fd7c3e98-base-webp.webp',
         },
       ],
-      sectionTitle: 'Каталог автомобилей',
     }
-  },
-  mounted: function () {
-    this.onResize()
-    window.addEventListener('optimizedResize', () => {
-      this.onResize()
-    })
-  },
-  beforeDestroy: function () {
-    window.removeEventListener('optimizedResize', () => {
-      this.onResize()
-    })
-  },
-  methods: {
-    onResize: function () {
-      if (window.innerWidth < 450) {
-        this.sectionTitle = 'Автомобили'
-      } else {
-        this.sectionTitle = 'Каталог автомобилей'
-      }
-    },
   },
 }
 </script>

@@ -1,29 +1,29 @@
 <template lang="pug">
 .keen-slider__slide
   .keen-slider__slide-inner(
-    :style="{ backgroundColor: discount.backgroundColor }",
-    :class="{ 'keen-slider__slide--inverted': inverted }"
+    :style='{ backgroundColor: discount.backgroundColor }',
+    :class='{ "keen-slider__slide--inverted": inverted }'
   )
     .container.slide
-      .slide__tag(v-if="discount.tag") {{ discount.tag }}
+      .slide__tag(v-if='discount.tag') {{ discount.tag }}
       h2.slide__title {{ discount.title }}
-      .slide__description(v-html="discount.description")
+      .slide__description(v-html='discount.description')
       anchor.slide__btn(
-        href="#",
+        href='#',
         button,
-        :primary="inverted",
-        :style="{ color: discount.backgroundColor }"
+        :primary='inverted',
+        :style='{ color: discount.backgroundColor }'
       ) {{ discount.btnText }}
-      img.slide__image(:src="discount.img")
-      img.slide__bevel(src="../../assets/discounts/bevel.png")
+      img.slide__image(:src='discount.img')
+      img.slide__bevel(src='../../assets/discounts/bevel.png')
 </template>
 
 <script>
-import anchor from "@/components/controls/Anchor.vue";
-import colors from "@/components/utils/colors";
+import anchor from '@/components/controls/Anchor.vue'
+import colors from '@/components/utils/colors'
 
 export default {
-  name: "Slide",
+  name: 'Slide',
   components: {
     anchor,
   },
@@ -37,14 +37,14 @@ export default {
     inverted() {
       return this.getBrightness(this.discount.backgroundColor) > 128
         ? true
-        : false;
+        : false
     },
   },
-};
+}
 </script>
 
 <style scoped lang="scss">
-@import "../../styles/toptier";
+@import '../../styles/toptier';
 .keen-slider__slide {
   display: flex;
   align-items: center;
@@ -137,20 +137,20 @@ export default {
     padding: calc(var(--spacer-s) / 2) var(--spacer-s);
     position: relative;
     margin-bottom: var(--spacer-s);
-     @include media-breakpoint-down(tabletM) {
-       @include text-caption();
-        padding: calc(var(--spacer-s) / 4) calc(var(--spacer-s) / 2);
-     }
-     @include media-breakpoint-only(tabletS) {
-       display: none;
-     }
+    @include media-breakpoint-down(tabletM) {
+      @include text-caption();
+      padding: calc(var(--spacer-s) / 4) calc(var(--spacer-s) / 2);
+    }
+    @include media-breakpoint-only(tabletS) {
+      display: none;
+    }
     &:before {
-      content: "#";
+      content: '#';
       margin-right: 0.25rem;
       opacity: 0.62;
     }
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -205,9 +205,14 @@ export default {
       margin-top: auto;
       align-self: stretch;
     }
-     @include media-breakpoint-down(mobileM) {
-       display: none;
-     }
+    @include media-breakpoint-down(mobileM) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
   }
   &__image {
     position: absolute;
@@ -219,30 +224,30 @@ export default {
     object-fit: contain;
     object-position: 80% 100%;
     @include media-breakpoint-down(desktopS) {
-      object-position: 100% 100%;      
+      object-position: 100% 100%;
     }
     @include media-breakpoint-down(tabletL) {
       left: 20vh;
     }
     @include media-breakpoint-down(tabletM) {
-      left: 10vh;     
+      left: 10vh;
     }
     @include media-breakpoint-down(tabletS) {
-      left: 12vh;     
+      left: 12vh;
       top: 50px;
       height: calc(100% - 50px);
     }
     @include media-breakpoint-down(mobileL) {
-      left: 10vw;     
+      left: 10vw;
       top: 0;
       width: calc(100% - 20vw);
       height: 100%;
       border-radius: var(--border-radius);
     }
-     @include media-breakpoint-down(mobileM) {
-        left: 0;
-        width: 100%;
-     }
+    @include media-breakpoint-down(mobileM) {
+      left: 0;
+      width: 100%;
+    }
     @include media-breakpoint-down(tabletL) {
       object-position: bottom right;
     }
