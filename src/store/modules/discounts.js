@@ -45,7 +45,7 @@ export default {
   },
   getters: {
     allDiscount: state => {
-      return state.discounts;
+      return state.all;
     }
   }
 };

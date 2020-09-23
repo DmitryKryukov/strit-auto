@@ -1,19 +1,24 @@
 <template lang="pug">
 #page
-  //carFilter
-  carGrid(sectionTitle="Lada")
+  carFilter
+  carGrid(v-for="brand in brands", :key="brand.name", :sectionTitle="brand.name")
 </template>
 
 <script>
-import carFilter from '@/components/blocks/CarFilter'
-import carGrid from '@/components/blocks/CarGrid'
+import carFilter from "@/components/blocks/CarFilter";
+import carGrid from "@/components/blocks/CarGrid";
 export default {
-  name: 'cars',
+  name: "cars",
   components: {
     carGrid,
-    carFilter
+    carFilter,
   },
-}
+  computed: {
+    brands() {
+      return this.$store.state.brands.all;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

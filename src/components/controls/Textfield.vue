@@ -68,8 +68,9 @@ export default {
     position: relative;
     display: inline-block;
     transition: transform 0.4s var(--ease-back);
+    width: 100%;
     &:focus-within {
-      transform: scale(0.945);
+      transform: scale(0.985);
       .text-field__label {
         @include activeLabel();
       }
@@ -77,13 +78,14 @@ export default {
   }
 
   &__el {
+    width: 100%;
     box-shadow: none;
     border: 0;
     outline: 0;
     -webkit-appearance: none;
     appearance: none;
     text-overflow: ellipsis;
-    height: 44px;
+    height: 48px;
     font-family: inherit;
     @include text-body();
     color: var(--text-main);
@@ -119,7 +121,7 @@ export default {
     left: 0;
     top: 0;
     padding-left: 12px;
-    line-height: 44px;
+    line-height: 48px;
     user-select: none;
     color: var(--text-muted);
     pointer-events: none;

@@ -21,6 +21,12 @@
   &--v-center {
     align-items: center;
   }
+  &--wrap {
+    flex-wrap: wrap;
+  }
+}
+.group {
+  grid-gap: .25rem;
 }
 .grid {
   display: grid;

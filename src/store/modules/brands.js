@@ -22,8 +22,8 @@ export default {
     ]
   },
   getters: {
-    all: state => {
-      return state.brands;
+    allBrands: state => {
+      return state.all;
     }
   }
 }
