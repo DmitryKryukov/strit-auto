@@ -9,7 +9,8 @@ export default {
           "Приезжайте с\u00a016:00 до 20:00 и\u00a0получите скидку на\u00a0любой автомобиль\u00a015\u202f%.",
         btnText: "Выбрать авто",
         backgroundColor: "var(--accent-primary)",
-        img: require("@/assets/discounts/1.png")
+        img: require("@/assets/discounts/1.png"),
+        imgThumb: require("@/assets/discounts/1-thumb.png")
       },
       {
         id: 2,
@@ -19,7 +20,8 @@ export default {
           "Госпрограмма «Первый автомобиль» подойдёт клиентам, у\u00a0которых не\u00a0было\u00a0авто.",
         btnText: "Узнать больше",
         backgroundColor: "#e4e8eC",
-        img: require("@/assets/discounts/2.png")
+        img: require("@/assets/discounts/2.png"),
+        imgThumb: require("@/assets/discounts/2-thumb.png")
       },
       {
         id: 3,
@@ -29,7 +31,8 @@ export default {
           "Для покупателей с\u00a0детьми доступна госпрограмма «Семейный\u00a0автомобиль».",
         btnText: "Узнать больше",
         backgroundColor: "var(--accent-secondary)",
-        img: require("@/assets/discounts/3.png")
+        img: require("@/assets/discounts/3.png"),
+        imgThumb: require("@/assets/discounts/3-thumb.png")
       },
       {
         id: 4,
@@ -39,7 +42,8 @@ export default {
           "Расчитайте кредит онлайн и\u00a0получите решение банка за\u00a040\u00a0секунд.",
         btnText: "Рассчитать кредит",
         backgroundColor: "#c24400",
-        img: require("@/assets/discounts/4.png")
+        img: require("@/assets/discounts/4.png"),
+        imgThumb: require("@/assets/discounts/4-thumb.png")
       }
     ]
   },

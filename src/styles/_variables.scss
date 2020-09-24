@@ -9,6 +9,7 @@
   --background-card: #FFFFFF;
   --background-card-accented: #E0E0E0;
   --background-backdrop: #FFFFFF80;
+  --background-modal-backdrop: #00000080;
 
   --accent-primary: #4755F5;
   --accent-secondary: #0F2E8A;
@@ -49,6 +50,8 @@
 
   //АНИМАЦИИ
   --ease: cubic-bezier(0.42, 0, 0.58, 1);
+  
   --ease-back: cubic-bezier(0.5, 8.5, 0.64, 1);
+  --ease-back-small: cubic-bezier(0.5, 1.5, 0.64, 1);
 
 }

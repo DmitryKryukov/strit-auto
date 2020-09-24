@@ -34,3 +34,12 @@ h2 {
     @include text-headline();
   }
 }
+.v-lazy-image {
+  filter: blur(1px);
+  opacity: .62;
+  transition: opacity .15s var(--ease), transform .3s var(--ease), filter 0.3s var(--ease);
+}
+.v-lazy-image-loaded {
+  filter: blur(0);
+  opacity: 1;
+}
