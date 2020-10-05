@@ -2,7 +2,7 @@
 article.car-card
   .car-card__badge(v-if='car.badge') {{ "−" + toRuble(car.priceOld - car.priceCurrent) }}
   .car-card__photo
-    img(:src='car.imgSrc')
+    v-lazy-image(:src='car.imgSrc', :src-placeholder='require("@/assets/pixel.png")')
   .car-card__brand {{ car.brand }}
   .car-card__name {{ car.name }}
   .car-card__price.car-card__price--old {{ toRuble(car.priceOld) }}
@@ -63,6 +63,7 @@ export default {
     margin-left: calc((var(--spacer-m) * -1) + 2px);
     border-radius: calc(var(--border-radius) - 2px);
     mix-blend-mode: multiply;
+    
 
     @include media-breakpoint-between(mobileS, mobileL) {
       padding-bottom: 75%; // Задаёт соотношение сторон 4×3
@@ -72,6 +73,7 @@ export default {
       position: absolute;
       width: 100%;
       height: 100%;
+      min-height: 100px;
       object-fit: cover;
       z-index: 2;
       pointer-events: none;

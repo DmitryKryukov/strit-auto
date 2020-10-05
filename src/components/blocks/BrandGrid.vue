@@ -4,7 +4,7 @@
     .brand-grid(ref="brandGrid")
       .grid.grid--9.brand-grid-inner
         brandCard(v-for="brand in brands", :key="brand.name", :brand="brand")
-        .brand-grid__show-all: span +9 марок в&nbsp;каталоге
+        anchor.brand-grid__show-all(href="/cars"): div +9 марок в&nbsp;каталоге
 
     .brand__show-all(
       @click="toggleBrandsVisibility",
@@ -17,6 +17,7 @@
 
 <script>
 import brandCard from "@/components/blocks/BrandCard";
+import anchor from "@/components/controls/Anchor";
 import icon from "@/components/graphs/Icon";
 import onResize from "@/components/utils/IOnResize";
 import stringsHelper from "@/components/utils/Strings";
@@ -26,6 +27,7 @@ export default {
   components: {
     brandCard,
     icon,
+    anchor,
   },
   mixins: [onResize, stringsHelper],
   computed: {
@@ -135,6 +137,7 @@ export default {
     cursor: pointer;
     transition: color 0.1s var(--ease), opacity 0.3s var(--ease),
       margin-bottom 0.3s var(--ease), height 0.3s var(--ease);
+
     &:hover {
       color: var(--accent-secondary);
     }
@@ -203,6 +206,7 @@ export default {
           align-items: center;
           transition: background-color 0.1s var(--ease),
             transform 0.1s var(--ease), border-radius 0.1s var(--ease);
+          white-space: break-spaces;
           &:active {
             transform: scale(0.945);
             background-color: var(--accent-secondary);

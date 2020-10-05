@@ -1,29 +1,29 @@
 <template lang="pug">
 .keen-slider__slide
   .keen-slider__slide-inner(
-    :style='{ backgroundColor: discount.backgroundColor }',
-    :class='{ "keen-slider__slide--inverted": inverted }'
+    :style="{ backgroundColor: discount.backgroundColor }",
+    :class="{ 'keen-slider__slide--inverted': inverted }"
   )
     .container.slide
-      .slide__tag(v-if='discount.tag') {{ discount.tag }}
+      .slide__tag(v-if="discount.tag") {{ discount.tag }}
       h2.slide__title {{ discount.title }}
-      .slide__description(v-html='discount.description')
+      .slide__description(v-html="discount.description")
       anchor.slide__btn(
-        href='#',
+        href="#",
         button,
-        :primary='inverted',
-        :style='{ color: discount.backgroundColor }'
+        :primary="inverted",
+        :style="{ color: discount.backgroundColor }"
       ) {{ discount.btnText }}
-      img.slide__image(:src='discount.img')
-      img.slide__bevel(src='../../assets/discounts/bevel.png')
+      img.slide__image(:src="discount.img", :src-placeholder="discount.imgThumb")
+      img.slide__bevel(src="../../assets/discounts/bevel.png")
 </template>
 
 <script>
-import anchor from '@/components/controls/Anchor.vue'
-import colors from '@/components/utils/colors'
+import anchor from "@/components/controls/Anchor.vue";
+import colors from "@/components/utils/colors";
 
 export default {
-  name: 'Slide',
+  name: "Slide",
   components: {
     anchor,
   },
@@ -37,14 +37,14 @@ export default {
     inverted() {
       return this.getBrightness(this.discount.backgroundColor) > 128
         ? true
-        : false
+        : false;
     },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">
-@import '../../styles/toptier';
+@import "../../styles/toptier";
 .keen-slider__slide {
   display: flex;
   align-items: center;
@@ -145,12 +145,12 @@ export default {
       display: none;
     }
     &:before {
-      content: '#';
+      content: "#";
       margin-right: 0.25rem;
       opacity: 0.62;
     }
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
