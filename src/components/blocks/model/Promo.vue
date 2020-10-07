@@ -85,9 +85,12 @@ export default {
   methods: {
     move(e) {
       const bg = document.querySelector('.promo__background')
-      bg.style.setProperty('--mouse-x', e.clientX * 0.1 + 'px')
-      bg.style.setProperty('--mouse-y', e.clientY * 0.1 + 'px')
-      bg.style.setProperty('--angle', e.clientY * e.clientX * 0.00005 + 'deg')
+      bg.style.setProperty('--mouse-x', e.clientX * 0.05 + 'px')
+      bg.style.setProperty('--mouse-y', e.clientY * 0.05 + 'px')
+      bg.style.setProperty(
+        '--angle',
+        (e.clientX / window.innerWidth) * 22.5 + 'deg'
+      )
     },
   },
 }
@@ -192,7 +195,7 @@ export default {
   height: 300px;
   transform: scale(2) rotate(var(--angle));
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300' fill='none'%3E%3Cpath d='M146.173 1.58513C148.623 0.570188 151.377 0.570187 153.827 1.58513L252.239 42.3489C254.689 43.3638 256.636 45.3105 257.651 47.7608L298.415 146.173C299.43 148.623 299.43 151.377 298.415 153.827L257.651 252.239C256.636 254.689 254.689 256.636 252.239 257.651L153.827 298.415C151.377 299.43 148.623 299.43 146.173 298.415L47.7608 257.651C45.3105 256.636 43.3638 254.689 42.3489 252.239L1.58513 153.827C0.570188 151.377 0.570187 148.623 1.58513 146.173L42.3489 47.7608C43.3638 45.3105 45.3105 43.3638 47.7608 42.3489L146.173 1.58513Z' fill='%23C4C4C4'/%3E%3C/svg%3E");
-  background-color: #0005eb;
+  background-color: #3b3736;
 }
 .promo__pattern {
   position: absolute;
@@ -201,19 +204,9 @@ export default {
   width: 300%;
   height: 300%;
   background-image: url('~@/assets/triangles.jpg');
-  background-size: 100%;
+  background-size: 50%;
   background-position: var(--mouse-x) var(--mouse-y);
   transform: rotate(var(--angle));
-  //transform: 0;
-  //animation: 10s linear 0s infinite rotate;
-  @keyframes rotate {
-    from {
-      transform: 0;
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
   &::before {
     content: '';
     position: absolute;
@@ -221,7 +214,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--accent-primary);
+    //background-color: var(--accent-primary);
     mix-blend-mode: hard-light;
   }
 }
@@ -229,36 +222,37 @@ export default {
   position: absolute;
   width: 150px;
   height: 150px;
-  transform-origin: right bottom;
+  transform-origin: 100% 100%;
   mask-image: url("data:image/svg+xml,%3Csvg width='150' height='107' viewBox='0 0 150 107' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M43.9341 0.93396L0 107H150L43.9341 0.93396Z' fill='%23C4C4C4'/%3E%3C/svg%3E%0A");
   mask-position: right bottom;
   mask-repeat: no-repeat;
 }
 .promo__tile:nth-child(1) {
-  transform: rotate(45deg);
+  transform: scaleX(-1) scaleY(1) rotate(90deg);
 }
 .promo__tile:nth-child(2) {
-  transform: scaleX(-1) rotate(45deg);
+  transform: rotate(90deg) scaleX(1) scaleY(1);
   //filter: hue-rotate(180deg);
 }
 .promo__tile:nth-child(3) {
-  transform: scaleX(-1);
+  transform: scaleX(-1) scaleY(1);
 }
 .promo__tile:nth-child(4) {
-  transform: scaleY(-1);
+  transform: scaleY(-1) scaleX(1);
 }
 .promo__tile:nth-child(5) {
-  transform: scaleY(-1) rotate(45deg);
+  transform: rotate(-90deg) scaleY(1) scaleX(1);
   //filter: hue-rotate(180deg);
 }
 .promo__tile:nth-child(6) {
-  transform: scaleY(-1) scaleX(-1) rotate(45deg);
+  transform: scaleX(1) scaleY(-1) rotate(90deg);
 }
 .promo__tile:nth-child(7) {
   transform: scaleY(-1) scaleX(-1);
   //filter: hue-rotate(180deg);
 }
 .promo__tile:nth-child(8) {
+  transform: scaleY(1) scaleX(1);
   //filter: hue-rotate(180deg);
 }
 </style>
